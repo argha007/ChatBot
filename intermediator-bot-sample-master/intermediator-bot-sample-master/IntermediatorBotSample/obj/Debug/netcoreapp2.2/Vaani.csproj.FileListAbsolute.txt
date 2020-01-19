@@ -1,0 +1,5 @@
+C:\Users\Admin\Desktop\intermediator-bot-sample-master\intermediator-bot-sample-master\IntermediatorBotSample\obj\Debug\netcoreapp2.2\Vaani.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\intermediator-bot-sample-master\intermediator-bot-sample-master\IntermediatorBotSample\obj\Debug\netcoreapp2.2\Vaani.Resources.Strings.resources
+C:\Users\Admin\Desktop\intermediator-bot-sample-master\intermediator-bot-sample-master\IntermediatorBotSample\obj\Debug\netcoreapp2.2\Vaani.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\intermediator-bot-sample-master\intermediator-bot-sample-master\IntermediatorBotSample\obj\Debug\netcoreapp2.2\Vaani.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\intermediator-bot-sample-master\intermediator-bot-sample-master\IntermediatorBotSample\obj\Debug\netcoreapp2.2\Vaani.AssemblyInfo.cs
