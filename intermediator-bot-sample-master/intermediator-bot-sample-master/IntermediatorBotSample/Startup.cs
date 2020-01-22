@@ -59,7 +59,7 @@ namespace IntermediatorBotSample
                 builder =>
                 {
                     builder.WithOrigins("http://localhost:3978/",
-                                        "http://localhost:29210/")
+                                        "http://localhost:29210/", "http://localhost:4200/")
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                 });
