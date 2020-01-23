@@ -1,0 +1,17 @@
+@import 'spec/settings/index';
+@import 'spec/tools/index';
+@import "~bootstrap/scss/bootstrap";
+@import 'spec/index';
+@import 'themify-icons/themify-icons/themify-icons';
+@import 'vendor/index';
+
+.ti-home { @include icon($home);  }
+.ti-email{ @include icon($email); }
+.ti-comment-alt{ @include icon($comment-alt); }
+.ti-menu{ @include icon($menu); }
+.ti-search{ @include icon($search); }
+.ti-close{ @include icon($close); }
+.ti-bell{ @include icon($bell); }
+.ti-settings { @include icon($settings); }
+.ti-user { @include icon($user); }
+.ti-power-off { @include icon($power-off); }
