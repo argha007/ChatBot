@@ -11,6 +11,12 @@ using Microsoft.Bot.Builder.TraceExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using IntermediatorBotSample.EF.Models;
+using IntermediatorBotSample.EF.Models.Repository;
+using IntermediatorBotSample.EF.Models.Dto;
+using IntermediatorBotSample.EF.Models.DataManager;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace IntermediatorBotSample
 {
@@ -40,7 +46,12 @@ namespace IntermediatorBotSample
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddControllersAsServices();
+            services.AddDbContext<VaaniContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:VaaniDB"]));
+            services.AddScoped<IDataRepository<EndCustomer, EndCustomerDto>, EndCustomerDataManager>();
+            services.AddScoped<IDataRepository<Users, UsersDto>, UsersDataManager>();
+            services.AddMvc().AddJsonOptions(
+            options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddControllersAsServices();
             services.AddSingleton(_ => Configuration);
             services.AddCors(options =>
             {
@@ -48,9 +59,17 @@ namespace IntermediatorBotSample
                 builder =>
                 {
                     builder.WithOrigins("http://localhost:3978/",
-                                        "http://localhost:29210/")
+                                        "http://localhost:29210/", "http://localhost:4200/")
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
+                });
+            });
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Test API",
+                    Description = "ASP.NET Core Web API"
                 });
             });
             services.AddBot<IntermediatorBot>(options =>
@@ -110,6 +129,10 @@ namespace IntermediatorBotSample
                 .UseMvc() // Required Razor pages
                 .UseBotFramework();
             app.UseCors(MyAllowSpecificOrigins);
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
+            });
         }
     }
 }
