@@ -12,5 +12,6 @@
         public const string Success = "success";
         public const string Fail = "fail";
         public const string Exception = "exception";
+        public const string InvalidCredentials = "Invalid Credential";
     }
 }

@@ -49,6 +49,7 @@ namespace IntermediatorBotSample
             services.AddDbContext<VaaniContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:VaaniDB"]));
             services.AddScoped<IDataRepository<EndCustomer, EndCustomerDto>, EndCustomerDataManager>();
             services.AddScoped<IDataRepository<Users, UsersDto>, UsersDataManager>();
+            services.AddScoped<ILoginRepository<LoggedInDto, LoginDto>, LoginDataManager>();
             services.AddMvc().AddJsonOptions(
             options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
         ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddControllersAsServices();

@@ -86,5 +86,23 @@ namespace IntermediatorBotSample.EF.Models.Dto
             }
             return new Users();
         }
+
+        public static LoggedInDto MapToLoggedInDto(Users users)
+        {
+            if (users != null)
+            {
+                return new LoggedInDto()
+                {
+                    Id = users.Id,
+                    FirstName = users.FirstName,
+                    LastName = users.LastName,
+                    Email = users.Email,
+                    RoleId = users.RoleId,
+                };
+            }
+            return new LoggedInDto();
+        }
     }
+
+
 }
