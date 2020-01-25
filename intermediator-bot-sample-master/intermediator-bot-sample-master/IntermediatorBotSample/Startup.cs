@@ -59,9 +59,9 @@ namespace IntermediatorBotSample
                 builder =>
                 {
                     builder.WithOrigins("http://localhost:3978/",
-                                        "http://localhost:29210/", "http://localhost:4200/")
+                                        "http://localhost:29210/", "http://localhost:4200")
                                         .AllowAnyHeader()
-                                        .AllowAnyMethod();
+                                        .AllowAnyMethod().AllowAnyOrigin();
                 });
             });
             services.AddSwaggerGen(c => {
@@ -123,12 +123,13 @@ namespace IntermediatorBotSample
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseDefaultFiles()
                 .UseStaticFiles()
                 .UseMvc() // Required Razor pages
                 .UseBotFramework();
-            app.UseCors(MyAllowSpecificOrigins);
+            
             app.UseSwagger();
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");

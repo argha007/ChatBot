@@ -37,7 +37,7 @@ namespace IntermediatorBotSample.Services
             var user = _dataRepository.GetDto(id);
             if (user == null)
             {
-                return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = ResponseMessage.RecordNotPresent, data=null as object });
+                return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = ResponseMessage.RecordNotPresent, data = null as object });
             }
 
             return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = ResponseMessage.RecordPresent, data = user });
@@ -45,7 +45,7 @@ namespace IntermediatorBotSample.Services
 
         // POST api/<controller>
         [HttpPost(Name ="AddUser")]
-        public IActionResult Post(UsersDto user)
+        public IActionResult Post([FromBody] UsersDto user)
         {
             try
             {
@@ -59,6 +59,22 @@ namespace IntermediatorBotSample.Services
                     return Json(new { statusCode = (int)HttpStatusCode.BadRequest, status = ResponseMessage.BadRequest, message = ResponseMessage.BadRequest, data = null as object });
                 }
 
+                //if (type.ToLower().Equals("cust"))
+                //{
+                //    user.RoleId = 3;
+                //}
+
+                //else if(type.ToLower().Equals("cust_agent"))
+                //{
+                //    user.RoleId = 4;
+                //}
+
+                //else if (type.ToLower().Equals("emp"))
+                //{
+                //    user.RoleId = 2;
+                //}
+                user.RoleId = 3;
+                user.IsActive = false;
                 var retVal = _dataRepository.Add(user);
 
                 if (retVal != -1)
