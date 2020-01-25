@@ -1,0 +1,51 @@
+<div class="masonry-item col-md-6 md-offset-6" style=" position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%); ">
+<div class="bgc-white p-20 bd">
+    <ng-container *ngIf="isLoginForm">
+    <h6 class="c-grey-900">Login</h6>
+    <div class="mT-30">
+        <form [formGroup]="LoginForm" (ngSubmit)="onLoginFormSubmit(LoginForm.value)">
+            <div class="form-group"><label for="email">Email address</label>
+            <input type="email" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.Email.errors }" id="txtEmail" aria-describedby="emailHelp" placeholder="Enter email"> 
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+    
+            </small>
+            <div *ngIf="submitted && g.Email.errors" class="invalid-feedback">
+                <div *ngIf="g.Email.errors.required">Email is required</div>
+            </div> 
+        </div>
+            <div class="form-group"><label for="password">Password</label>
+                <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.Password.errors }" id="txtPassword" placeholder="Password">
+            </div>
+            <div *ngIf="submitted && g.Password.errors" class="invalid-feedback">
+                <div *ngIf="g.Password.errors.required">Password is required</div>
+            </div> 
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <div>
+            <span style="cursor:pointer;" (click)="toggle()" >Forgot Password?</span>
+            </div>
+        </form>
+</div>
+</ng-container>
+<ng-container *ngIf="!isLoginForm">
+    <h6 class="c-grey-900">Forgot Password</h6>
+    <div class="mT-30">
+        <form [formGroup]="ForgotPasswordForm" (ngSubmit)="onFormSubmit(ForgotPasswordForm.value)">
+        <div class="form-group"><label for="ForgotEmail">Email address</label>
+        <input type="email" formControlName="ForgotEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ForgotEmail.errors }" id="txtRetrievePassword" aria-describedby="emailHelp" placeholder="Enter email">
+        <div *ngIf="submitted && f.ForgotEmail.errors" class="invalid-feedback">
+            <div *ngIf="f.ForgotEmail.errors.required">Email is required</div>
+        </div> 
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+
+        </small>
+    </div>
+       
+        <button type="submit" class="btn btn-primary">Retrieve Password</button>
+        <div>
+            <span style="cursor:pointer;" (click)="toggle()" >Login</span>
+        </div>
+    </form>
+</div>
+</ng-container>
+</div>
+</div>

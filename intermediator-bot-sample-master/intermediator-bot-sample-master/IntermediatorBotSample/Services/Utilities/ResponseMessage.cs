@@ -13,5 +13,7 @@
         public const string Fail = "fail";
         public const string Exception = "exception";
         public const string InvalidCredentials = "Invalid Credential";
+        public const string ForgotPasswordSuccess = "Password Has Been Sent to your registered email id";
+        public const string ForgotPasswordInvalidEmail = "Email id is not registered with us";
     }
 }

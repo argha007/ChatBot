@@ -5,5 +5,6 @@ namespace IntermediatorBotSample.EF.Models.Repository
     public interface ILoginRepository<TEntity, TDto>
     {
         TEntity Login(TDto user);
+        int Get(string str);
     }
 }

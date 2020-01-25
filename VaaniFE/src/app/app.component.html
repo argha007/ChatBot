@@ -1,13 +1,19 @@
 <div>
-    <!-- #Left Sidebar ==================== -->
-    <app-side-bar></app-side-bar>
+    <ng-container *ngIf="loggedIn">
+        <!-- #Left Sidebar ==================== -->
+    <app-side-bar></app-side-bar>  
     <!-- #Main ============================ -->
     <div class="page-container">
         <!-- ### $Topbar ### -->
         <app-page-header></app-page-header>
         <!-- ### $App Screen Content ### -->
-        <main class="main-content bgc-grey-100"></main>
+        <main class="main-content bgc-grey-100">
+        </main>
         <!-- ### $App Screen Footer ### -->
         <app-page-footer></app-page-footer>
     </div>
+</ng-container>
+<ng-container *ngIf="!loggedIn">
+<app-user-login></app-user-login>
+</ng-container>
 </div>

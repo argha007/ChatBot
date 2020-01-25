@@ -34,12 +34,52 @@ namespace IntermediatorBotSample.Services
 
                 var loggedInUsers = _dataRepository.Login(login);
 
-                if (loggedInUsers == null)
+                if (loggedInUsers.Email == null)
                 {
                     return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = ResponseMessage.InvalidCredentials, data = null as object });
                 }
 
                 return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = ResponseMessage.RecordPresent, data = loggedInUsers });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { statusCode = (int)HttpStatusCode.InternalServerError, status = ResponseMessage.Fail, message = ex.Message, data = null as object });
+            }
+        }
+
+        [HttpGet(Name = "ForgotPassword")]
+        public IActionResult Get(string registeredEmailId)
+        {
+            var responseMessage = string.Empty;
+            try
+            {
+                if (string.IsNullOrEmpty(registeredEmailId))
+                {
+                    return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = "Email Id is Blank", data = null as object });
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return Json(new { statusCode = (int)HttpStatusCode.BadRequest, status = ResponseMessage.BadRequest, message = ResponseMessage.BadRequest, data = null as object });
+                }
+
+                var forgotPasswordStatus = _dataRepository.Get(registeredEmailId);
+                switch (forgotPasswordStatus)
+                {
+                    case 1:
+                        responseMessage = ResponseMessage.ForgotPasswordSuccess;
+                        break;
+                    case 2:
+                        responseMessage = ResponseMessage.ForgotPasswordInvalidEmail;
+                        break;
+                    case 0:
+                        responseMessage = ResponseMessage.Fail;
+                        break;
+                    default:
+                        break;
+                }
+
+                return Json(new { statusCode = (int)HttpStatusCode.OK, status = ResponseMessage.Success, message = responseMessage, data = null as object });
             }
             catch (Exception ex)
             {
