@@ -17,6 +17,8 @@ namespace IntermediatorBotSample.EF.Models
 
         [ForeignKey("Roles")]
         public int RoleId { get; set; }
+        [ForeignKey("BotPlans")]
+        public int BotPlanId { get; set; }
         [Required]
         [StringLength(100)]
         public string Email { get; set; }
@@ -35,8 +37,14 @@ namespace IntermediatorBotSample.EF.Models
         public string PhoneNumbers { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public DateTime? RegisteredOn { get; set; }
+        [StringLength(100)]
+        public string PrimaryAddress { get; set; }
+        [StringLength(100)]
+        public string CommunicationAddress { get; set; }
 
         public virtual Roles Role { get; set; }
+
+        public virtual BotPlans BotPlan { get; set; }
         public virtual ICollection<EndCustomer> EndCustomer { get; set; }
     }
 }

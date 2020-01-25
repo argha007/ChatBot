@@ -12,6 +12,8 @@ namespace IntermediatorBotSample.EF.Models.Dto
         public string Email { get; set; }
         [JsonProperty(PropertyName = "roleId")]
         public int RoleId { get; set; }
+        [JsonProperty(PropertyName = "botPlanId")]
+        public int BotPlanId { get; set; }
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
         [JsonProperty(PropertyName = "firstName")]
@@ -24,8 +26,13 @@ namespace IntermediatorBotSample.EF.Models.Dto
         public string PhoneNumbers { get; set; }
         [JsonProperty(PropertyName = "dateOfBirth")]
         public DateTime? DateOfBirth { get; set; }
-        [JsonProperty(PropertyName = "registeredOn")]
-        public DateTime? RegisteredOn { get; set; }
+        //[JsonProperty(PropertyName = "registeredOn")]
+        //public DateTime? RegisteredOn { get; set; }
+
+        [JsonProperty(PropertyName = "primaryAddress")]
+        public string PrimaryAddress { get; set; }
+        [JsonProperty(PropertyName = "communicationAddress")]
+        public string CommunicationAddress { get; set; }
 
 
     }
@@ -43,10 +50,14 @@ namespace IntermediatorBotSample.EF.Models.Dto
                     LastName = users.LastName,
                     Email = users.Email,
                     DateOfBirth = users.DateOfBirth,
-                    RegisteredOn = users.RegisteredOn,
+                    //RegisteredOn = DateTime.Now.Date,
                     Password = users.Password,
                     IsActive = users.IsActive,
-                    RoleId = users.RoleId
+                    RoleId = users.RoleId,
+                    BotPlanId=users.BotPlanId,
+                    PrimaryAddress=users.PrimaryAddress,
+                    CommunicationAddress=users.CommunicationAddress,
+                    PhoneNumbers=users.PhoneNumbers
                 };
             }
             return new UsersDto();
@@ -61,12 +72,16 @@ namespace IntermediatorBotSample.EF.Models.Dto
                     LastName = users.LastName,
                     Email = users.Email,
                     DateOfBirth = users.DateOfBirth,
-                    RegisteredOn = users.RegisteredOn,
+                    RegisteredOn = DateTime.Now.Date,
                     Password = users.Password,
                     IsActive = users.IsActive,
-                    RoleId = users.RoleId
+                    RoleId = users.RoleId,
+                    BotPlanId = users.BotPlanId,
+                    PrimaryAddress = users.PrimaryAddress,
+                    CommunicationAddress = users.CommunicationAddress,
+                    PhoneNumbers = users.PhoneNumbers
                     //Role=null,
-                   // EndCustomer = null
+                    // EndCustomer = null
                 };
             }
             return new Users();
