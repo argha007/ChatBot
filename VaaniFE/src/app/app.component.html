@@ -8,10 +8,15 @@
         <app-page-header></app-page-header>
         <!-- ### $App Screen Content ### -->
         <main class="main-content bgc-grey-100">            
-            <ng-container *ngIf="showChat && !showDashBoard;else dashboard">
+            <ng-container *ngIf="showChat && !showDashBoard && !showUserData;else userTemplate">
                 <app-chat></app-chat>
             </ng-container>
-
+            
+            <ng-template #userTemplate>
+                <ng-container *ngIf="!showChat && !showDashBoard && showUserData;else dashboard">
+                    <app-all-users></app-all-users>
+                </ng-container>                
+            </ng-template>
             <ng-template #dashboard>
                 <app-dashboard></app-dashboard>
             </ng-template>

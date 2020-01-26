@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './chat/chat/chat.component';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component'; 
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { AllUsersComponent } from './allUsers/all-users/all-users.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
     PageFooterComponent,
     UserLoginComponent,
     ChatComponent,
-    DashboardComponent
+    DashboardComponent,
+    AllUsersComponent
   ],
   imports: [
     BrowserModule,
