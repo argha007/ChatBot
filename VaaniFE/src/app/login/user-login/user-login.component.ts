@@ -77,11 +77,18 @@ export class UserLoginComponent implements OnInit {
     data => {
       if(data.statusCode==200)
       {
+        if(data.message==="Record is available with us!!!")
+        {
         this.LoginForm.reset();
         this.valueChanged.emit("loggedIn");
+        }
+        else
+        {
+          alert(data.message);
+        }
+        
       }
       else{
-        this.parent.loggedIn=true;
         alert("We are having issues currently, please try again later");
       }
       
