@@ -13,7 +13,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './chat/chat/chat.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-import { AllUsersComponent } from './allUsers/all-users/all-users.component'; 
+import { AllUsersComponent } from './allUsers/all-users/all-users.component';
+import { BotDetectCaptchaModule } from 'angular-captcha';
+import { CaptchaComponent } from 'angular-captcha';
+import { CaptchaService } from 'angular-captcha/src/captcha.service';
+import { CaptchaHelperService } from 'angular-captcha/src/captcha-helper.service';
+import { CaptchaEndpointPipe } from 'angular-captcha/src/captcha-endpoint.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +28,8 @@ import { AllUsersComponent } from './allUsers/all-users/all-users.component';
     UserLoginComponent,
     ChatComponent,
     DashboardComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    //CaptchaComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +37,12 @@ import { AllUsersComponent } from './allUsers/all-users/all-users.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    BotDetectCaptchaModule,
   ],
-  providers: [AppService],
+  exports:[
+    BotDetectCaptchaModule,
+  ],
+  providers: [AppService,CaptchaService,CaptchaHelperService,CaptchaEndpointPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

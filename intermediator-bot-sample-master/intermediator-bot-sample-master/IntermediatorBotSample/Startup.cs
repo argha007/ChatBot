@@ -17,6 +17,8 @@ using IntermediatorBotSample.EF.Models.Dto;
 using IntermediatorBotSample.EF.Models.DataManager;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using BotDetect.Web;
 
 namespace IntermediatorBotSample
 {
@@ -108,8 +110,9 @@ namespace IntermediatorBotSample
                 // Handoff middleware
                 options.Middleware.Add(new HandoffMiddleware(Configuration));
             });
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc(); // Required Razor pages
+           
         }
 
         /// <summary>
@@ -135,6 +138,7 @@ namespace IntermediatorBotSample
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
             });
+            app.UseSimpleCaptcha(Configuration.GetSection("BotDetect"));
         }
     }
 }

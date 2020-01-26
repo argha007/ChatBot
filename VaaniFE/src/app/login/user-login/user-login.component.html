@@ -19,6 +19,19 @@
             <div *ngIf="submittedLog && g.Password.errors" class="invalid-feedback">
                 <div *ngIf="g.Password.errors.required">Password is required</div>
             </div> 
+           <!-- captcha challenge: placeholder -->
+  <botdetect-captcha captchaStyleName="angularFormCaptcha"></botdetect-captcha>
+
+  <label>
+    <span>Retype the chars long from the picture:</span>
+    <!-- captcha code: user-input textbox -->
+    <input
+      type="text"
+      id="userCaptchaInput"
+      name="userCaptchaInput"
+      formControlName="userCaptchaInput"
+    >
+  </label>
             <button type="submit" class="btn btn-primary">Sign In</button>
             <div>
             <span style="cursor:pointer;" (click)="toggle()" >Forgot Password?</span>

@@ -28,5 +28,13 @@ export class AppService {
    {  
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' }) };   
     return this.http.post<ServiceResponse>(this.Url + '/login/', userLogin);
-   }    
+   }
+   
+   send(data: Object): Observable<any> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' }) };
+
+    return this.http.post(
+      this.Url + '/captcha/', 
+      data, httpOptions);
+  }
 }
