@@ -21,6 +21,6 @@
     </div>
 </ng-container>
 <ng-container *ngIf="!loggedIn">
-<app-user-login></app-user-login>
+<app-user-login (valueChanged)="onValueChange($event)"></app-user-login>
 </ng-container>
 </div>

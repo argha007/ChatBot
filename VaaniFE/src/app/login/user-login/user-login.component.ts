@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject  } from '@angular/core';
+import { Component, OnInit,Inject ,EventEmitter, Output } from '@angular/core';
 import {Observable} from 'rxjs';    
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'; 
 import { AppService } from 'src/app/services/app.service'; 
@@ -18,6 +18,7 @@ export class UserLoginComponent implements OnInit {
   message:string; 
   submitted = false;
   submittedLog = false;
+  @Output() valueChanged: EventEmitter<string> = new EventEmitter();
   constructor(@Inject(AppComponent) private parent: AppComponent,private formbulider: FormBuilder,private appService:AppService,) { }
 
   ngOnInit() {
@@ -49,8 +50,7 @@ export class UserLoginComponent implements OnInit {
     data => {
       if(data.statusCode==200)
       {
-        alert(data.message);
-        this.LoginForm.reset();
+        this.ForgotPasswordForm.reset();
       }
       else{
         alert("We are havinbg issues currently, please try again later");
@@ -77,12 +77,12 @@ export class UserLoginComponent implements OnInit {
     data => {
       if(data.statusCode==200)
       {
-        alert(data.message);
-        this.ForgotPasswordForm.reset();
+        this.LoginForm.reset();
+        this.valueChanged.emit("loggedIn");
       }
       else{
         this.parent.loggedIn=true;
-        alert("We are havinbg issues currently, please try again later");
+        alert("We are having issues currently, please try again later");
       }
       
   });   
