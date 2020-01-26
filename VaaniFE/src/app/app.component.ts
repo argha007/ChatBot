@@ -7,18 +7,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Vaani Chat Bot';
-  public loggedIn:boolean = true;
+  public loggedIn:boolean = false;
   showChat: boolean = false;
   showDashBoard: boolean = true;
   showUserData: boolean = false;
   onValueChange(newVal){
     this.showChat = newVal;
-
     switch(newVal) { 
       case "chat": { 
         this.showChat = true;
         this.showDashBoard = false;
         this.showUserData = false;
+         break; 
+      } 
+      case "loggedIn": { 
+        this.loggedIn = true;
+        this.showChat = false;
+        this.showDashBoard = true;
          break; 
       } 
       case "home": { 
