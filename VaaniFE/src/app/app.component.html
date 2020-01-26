@@ -1,13 +1,20 @@
 <div>
     <ng-container *ngIf="loggedIn">
         <!-- #Left Sidebar ==================== -->
-    <app-side-bar></app-side-bar>  
+    <app-side-bar (valueChanged)="onValueChange($event)"></app-side-bar>  
     <!-- #Main ============================ -->
     <div class="page-container">
         <!-- ### $Topbar ### -->
         <app-page-header></app-page-header>
         <!-- ### $App Screen Content ### -->
-        <main class="main-content bgc-grey-100">
+        <main class="main-content bgc-grey-100">            
+            <ng-container *ngIf="showChat && !showDashBoard;else dashboard">
+                <app-chat></app-chat>
+            </ng-container>
+
+            <ng-template #dashboard>
+                <app-dashboard></app-dashboard>
+            </ng-template>
         </main>
         <!-- ### $App Screen Footer ### -->
         <app-page-footer></app-page-footer>
